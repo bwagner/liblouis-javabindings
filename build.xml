@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Louis" default="default" basedir=".">
+
+	<property name="build.dir" value="bin" />
+	<property name="app.jar" value="louis.jar" />
+	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="lib" />
+	<path id="classpath.path">
+		<pathelement location="${build.dir}" />
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="default" depends="jar" />
+
+	<target name="jar" depends="compile">
+		<jar jarfile="${app.jar}" basedir="${build.dir}" includes="**/*.class" excludes="**/*Test.class" />
+	</target>
+
+	<target name="compile">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on">
+			<classpath>
+				<path refid="classpath.path" />
+			</classpath>
+		</javac>
+	</target>
+
+</project>
