@@ -13,6 +13,10 @@ public class Louis {
 	private final LouisLibrary INSTANCE;
 
 	private static Louis instance;
+	
+	public static String translateString(final String trantab, final String inbuf) {
+		return getInstance().translateStringInt(trantab, inbuf);
+	}
 
 	public static Louis getInstance() {
 		if (instance == null) {
@@ -59,7 +63,7 @@ public class Louis {
 		}
 	}
 
-	public String translateString(final String trantab, final String inbuf) {
+	private String translateStringInt(final String trantab, final String inbuf) {
 		final int inlen = inbuf.length();
 		final byte[] inbufArray = createArrayFromString(inbuf);
 		final byte[] outbufArray = new byte[outlenMultiplier * inbufArray.length];
