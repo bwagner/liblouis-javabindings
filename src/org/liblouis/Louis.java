@@ -14,8 +14,8 @@ public class Louis {
 
 	private static Louis instance;
 	
-	public static String translateString(final String trantab, final String inbuf) {
-		return getInstance().translateStringInt(trantab, inbuf);
+	public static String translate(final String trantab, final String inbuf) {
+		return getInstance().translateString(trantab, inbuf);
 	}
 
 	public static Louis getInstance() {
@@ -63,7 +63,7 @@ public class Louis {
 		}
 	}
 
-	private String translateStringInt(final String trantab, final String inbuf) {
+	private String translateString(final String trantab, final String inbuf) {
 		final int inlen = inbuf.length();
 		final byte[] inbufArray = createArrayFromString(inbuf);
 		final byte[] outbufArray = new byte[outlenMultiplier * inbufArray.length];
