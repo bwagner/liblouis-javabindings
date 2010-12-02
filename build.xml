@@ -3,6 +3,7 @@
 
 	<property name="build.dir" value="bin" />
 	<property name="app.jar" value="louis.jar" />
+	<property name="louisFat.jar" value="louisFat.jar" />
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="lib" />
 	<path id="classpath.path">
@@ -16,6 +17,19 @@
 
 	<target name="jar" depends="compile">
 		<jar jarfile="${app.jar}" basedir="${build.dir}" includes="**/*.class" excludes="**/*Test.class" />
+	</target>
+
+	<target name="fatjar" depends="jar">
+		<property name="tmp" location="tmp"/>
+		<delete dir="${tmp}"/>
+		<mkdir dir="${tmp}"/>
+		<unjar dest="${tmp}">
+			<fileset dir="${lib.dir}"/>
+		</unjar>
+		<unjar src="${app.jar}" dest="${tmp}"/>
+		<jar jarfile="${louisFat.jar}" basedir="${tmp}" >
+		</jar>
+		<delete dir="${tmp}"/>
 	</target>
 
 	<target name="compile">
