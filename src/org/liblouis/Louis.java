@@ -50,6 +50,9 @@ public class Louis {
 	private String translateString(final String trantab, final String inbuf) {
 		try {
 			final int inlen = inbuf.length();
+			if (inlen == 0) {
+				return "";
+			}
 			final byte[] inbufArray = inbuf.getBytes(encoding);
 			final byte[] outbufArray = new byte[outlenMultiplier
 					* inbufArray.length];
