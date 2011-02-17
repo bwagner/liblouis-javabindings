@@ -33,6 +33,7 @@
 	</target>
 
 	<target name="compile">
+		<mkdir dir="${build.dir}"/>
 		<javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on">
 			<classpath>
 				<path refid="classpath.path" />
