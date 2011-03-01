@@ -88,4 +88,15 @@ public class Louis {
 
 		public String lou_free();
 	}
+
+	public static void main(final String[] args) {
+		if (args.length != 2) {
+			System.out.println("Usage: prog table(s) string");
+			System.exit(1);
+		}
+		else {
+			System.out.println(Louis.translate(args[0], args[1]));
+		}
+
+	}
 }

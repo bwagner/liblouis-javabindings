@@ -28,6 +28,9 @@
 		</unjar>
 		<unjar src="${app.jar}" dest="${tmp}"/>
 		<jar jarfile="${louisFat.jar}" basedir="${tmp}" >
+			<manifest>
+				<attribute name="Main-Class" value="org.liblouis.Louis"/>
+			</manifest>
 		</jar>
 		<delete dir="${tmp}"/>
 	</target>
