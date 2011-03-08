@@ -51,7 +51,7 @@
 
 	<target name="zip" description="creates a zip file of sources and lib needed to compile">
 		<zip destfile="${liblouis.zip}" basedir=".."
-			includes="${project.name}/**"
+			includes="${ant.project.name}/**"
 			excludes="**/louis.jar, **/louisFat.jar, **/.git/**, **/*.class, **/${liblouis.zip}, **/bin/**, **/.settings/**">
 		</zip>
 	</target>
