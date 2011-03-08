@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Louis" default="default" basedir=".">
+<project name="LibLouis" default="default" basedir=".">
+
+	<!--
+	NOTE: the "zip" target assumes that ${project.name} is equal to the 
+	      directory name of this project.
+	-->
 
 	<property name="build.dir" value="bin" />
 	<property name="app.jar" value="louis.jar" />
 	<property name="louisFat.jar" value="louisFat.jar" />
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="lib" />
+	<property name="liblouis.zip" value="liblouis.zip" />
 	<path id="classpath.path">
 		<pathelement location="${build.dir}" />
 		<fileset dir="${lib.dir}">
@@ -15,11 +21,11 @@
 
 	<target name="default" depends="jar" />
 
-	<target name="jar" depends="compile">
+	<target name="jar" depends="compile" description="make jar of only our classes">
 		<jar jarfile="${app.jar}" basedir="${build.dir}" includes="**/*.class" excludes="**/*Test.class" />
 	</target>
 
-	<target name="fatjar" depends="jar">
+	<target name="fatjar" depends="jar" description="make jar of classes and includes 3rd party jars">
 		<property name="tmp" location="tmp"/>
 		<delete dir="${tmp}"/>
 		<mkdir dir="${tmp}"/>
@@ -43,9 +49,11 @@
 		</javac>
 	</target>
 
-	<target name="zip">
-		<zip destfile="liblouis.zip" basedir="."
-			excludes="louis.jar, louisFat.jar, .git/**, **/*.class, *.zip, bin/**, .settings/**"/>
+	<target name="zip" description="creates a zip file of sources and lib needed to compile">
+		<zip destfile="${liblouis.zip}" basedir=".."
+			includes="${project.name}/**"
+			excludes="**/louis.jar, **/louisFat.jar, **/.git/**, **/*.class, **/${liblouis.zip}, **/bin/**, **/.settings/**">
+		</zip>
 	</target>
 
 </project>
