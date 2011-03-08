@@ -43,4 +43,9 @@
 		</javac>
 	</target>
 
+	<target name="zip">
+		<zip destfile="liblouis.zip" basedir="."
+			excludes="louis.jar, louisFat.jar, .git/**, **/*.class, *.zip, bin/**, .settings/**"/>
+	</target>
+
 </project>
