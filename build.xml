@@ -3,7 +3,7 @@
 
 	<!--
 	NOTE: the "zip" target assumes that ${project.name} is equal to the 
-	      directory name of this project.
+	      directory name of this project. 
 	-->
 
 	<property name="build.dir" value="bin" />
