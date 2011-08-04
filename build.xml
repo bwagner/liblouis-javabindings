@@ -12,6 +12,8 @@
 	<property name="dist.zip" value="${ant.project.name}.zip" />
  	<property name="build.dir" value="bin" />
 	<property name="src.dir" value="src" />
+	<property name="test_src.dir" value="test_src" />
+	<property name="junit.jar" value="junit-4.8.2.jar" />
 	<property name="lib.dir" value="lib" />
 	<path id="classpath.path">
 		<pathelement location="${build.dir}" />
@@ -31,7 +33,9 @@
 		<delete dir="${tmp}"/>
 		<mkdir dir="${tmp}"/>
 		<unjar dest="${tmp}">
-			<fileset dir="${lib.dir}"/>
+			<fileset dir="${lib.dir}">
+				<exclude name="**/${junit.jar}"/>
+			</fileset>
 		</unjar>
 		<unjar src="${app.jar}" dest="${tmp}"/>
 		<jar jarfile="${fat.jar}" basedir="${tmp}" >
@@ -55,9 +59,32 @@
 		<delete file="${dist.zip}" />
 		<zip destfile="${dist.zip}" basedir=".."
 			includes="${ant.project.name}/**"
-			excludes="**/${app.jar}, **/${fat.jar}, **/.git/**, **/*.class, **/${dist.zip}, **/bin/**, **/.settings/**"
+			excludes="**/${app.jar}, **/${fat.jar}, **/.git/**, **/*.class, **/${dist.zip}, **/bin/**, **/.settings/**, **/${junit.jar}"
 			update="false">
 		</zip>
+	</target>
+
+	<target name="test" depends="compile" description="test">
+		<junit printsummary="yes" fork="yes" haltonfailure="no" haltonerror="no">
+
+			<formatter type="plain" usefile="false" />
+			<classpath>
+
+				<!-- classes to test -->
+				<pathelement location="${build.dir}" />
+
+				<!-- 3rd party libs -->
+				<pathelement location="${lib.dir}/jna.jar" />
+				<pathelement location="${lib.dir}/${junit.jar}" />
+			</classpath>
+			<batchtest>
+				<formatter type="plain" usefile="false" />
+				<fileset dir="${test_src.dir}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+
+		</junit>
 	</target>
 
 	<target name="clean" description="clean">
