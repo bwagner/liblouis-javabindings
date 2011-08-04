@@ -22,6 +22,10 @@
 		</fileset>
 	</path>
 
+    <presetdef name="my.javac">
+        <javac includeantruntime="false" />
+    </presetdef>
+
 	<target name="default" depends="jar" />
 
 	<target name="jar" depends="compile" description="make jar of only our classes">
@@ -48,11 +52,11 @@
 
 	<target name="compile">
 		<mkdir dir="${build.dir}"/>
-		<javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on" target="1.5">
+		<my.javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on" target="1.5">
 			<classpath>
 				<path refid="classpath.path" />
 			</classpath>
-		</javac>
+		</my.javac>
 	</target>
 
 	<target name="zip" description="creates a zip file of sources and lib needed to compile">
