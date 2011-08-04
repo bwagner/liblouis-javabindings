@@ -2,16 +2,17 @@
 <project name="LibLouis" default="default" basedir=".">
 
 	<!--
-	NOTE: the "zip" target assumes that ${project.name} is equal to the 
+	NOTE: the "zip" target assumes that ${ant.project.name} is equal to the 
 	      directory name of this project. 
 	-->
 
-	<property name="build.dir" value="bin" />
 	<property name="app.jar" value="louis.jar" />
-	<property name="louisFat.jar" value="louisFat.jar" />
+	<property name="fat.jar" value="louisFat.jar" />
+	<property name="main.class" value="org.liblouis.Louis" />
+	<property name="dist.zip" value="${ant.project.name}.zip" />
+ 	<property name="build.dir" value="bin" />
 	<property name="src.dir" value="src" />
 	<property name="lib.dir" value="lib" />
-	<property name="liblouis.zip" value="liblouis.zip" />
 	<path id="classpath.path">
 		<pathelement location="${build.dir}" />
 		<fileset dir="${lib.dir}">
@@ -33,9 +34,9 @@
 			<fileset dir="${lib.dir}"/>
 		</unjar>
 		<unjar src="${app.jar}" dest="${tmp}"/>
-		<jar jarfile="${louisFat.jar}" basedir="${tmp}" >
+		<jar jarfile="${fat.jar}" basedir="${tmp}" >
 			<manifest>
-				<attribute name="Main-Class" value="org.liblouis.Louis"/>
+				<attribute name="Main-Class" value="${main.class}"/>
 			</manifest>
 		</jar>
 		<delete dir="${tmp}"/>
@@ -51,10 +52,18 @@
 	</target>
 
 	<target name="zip" description="creates a zip file of sources and lib needed to compile">
-		<zip destfile="${liblouis.zip}" basedir=".."
+		<delete file="${dist.zip}" />
+		<zip destfile="${dist.zip}" basedir=".."
 			includes="${ant.project.name}/**"
-			excludes="**/louis.jar, **/louisFat.jar, **/.git/**, **/*.class, **/${liblouis.zip}, **/bin/**, **/.settings/**">
+			excludes="**/${app.jar}, **/${fat.jar}, **/.git/**, **/*.class, **/${dist.zip}, **/bin/**, **/.settings/**"
+			update="false">
 		</zip>
+	</target>
+
+	<target name="clean" description="clean">
+		<delete dir="${build.dir}" />
+		<delete file="${app.jar}" />
+		<delete file="${fat.jar}" />
 	</target>
 
 </project>
