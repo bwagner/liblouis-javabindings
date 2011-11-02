@@ -14,8 +14,17 @@ public class Louis {
 
 	private static Louis instance;
 
+	/**
+	 * public interface that calls Liblouis translate. As a workaround for a bug
+	 * in LibLouis, we squeeze all whitespace into a single space before calling
+	 * liblouis translate.
+	 * 
+	 * @param trantab
+	 * @param inbuf
+	 * @return
+	 */
 	public static String translate(final String trantab, final String inbuf) {
-		return getInstance().translateString(trantab, inbuf);
+		return getInstance().translateString(trantab, squeeze(inbuf));
 	}
 
 	public static Louis getInstance() {
@@ -73,6 +82,10 @@ public class Louis {
 
 	public void louFree() {
 		INSTANCE.lou_free();
+	}
+
+	public static String squeeze(final String in) {
+		return in.replaceAll("(?:\\p{Z}|\\s)+", " ");
 	}
 
 	interface LouisLibrary extends Library {
