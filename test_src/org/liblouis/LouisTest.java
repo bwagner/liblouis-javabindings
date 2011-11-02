@@ -20,9 +20,10 @@ public class LouisTest {
 	@Test
 	public void testMultipleTables() {
 		assertEquals(
+				"if test fails, first check the list of liblouis tables (first string argument to Louis.translate)",
 				"N*A BLAZON",
 				Louis.translate(
-						"sbs.dis,sbs-de-core6.cti,sbs-de-accents-ch.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-core.mod,sbs-special.mod",
+						"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-core.mod,sbs-special.mod",
 						"Nina Blazon"));
 	}
 
