@@ -43,7 +43,6 @@ public class LouisTest {
 	@Test
 	public void testDashEnUs() {
 
-		String a = "\n                       \t                                                                                          ";
 		final String en_us = "en-us-g2.ctb";
 		assertEquals("bla bla--bla",
 				Louis.translate(en_us, "bla    bla  – bla"));
