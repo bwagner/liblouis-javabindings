@@ -8,6 +8,8 @@ public class LouisTest {
 
 	private final String de_g2 = "sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-core.mod,sbs-special.mod";
 
+	private final String NBSP = "\u00A0";
+
 	@Test
 	public void testTranslation() {
 		assertEquals("_w dom9,n",
@@ -63,7 +65,16 @@ public class LouisTest {
 	}
 
 	@Test
+	public void testNbsp() {
+
+		assertEquals("BLA BLA", Louis.translate(de_g2, "BLA"+NBSP+"BLA"));
+	}
+
+	@Test
 	public void testWhitespace() {
-		assertEquals(" – b ", Louis.squeeze(" \t\n\r   – \t\n\r   b \t\n\r   "));
+		assertEquals(
+				" – b ",
+				Louis.squeeze(" \t\n\r " + NBSP + "  – \t\n\r " + NBSP
+						+ "   b \t\n\r " + NBSP + "  "));
 	}
 }
