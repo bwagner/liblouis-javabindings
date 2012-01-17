@@ -4,6 +4,27 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+/**
+ * Copyright (C) 2010 Swiss Library for the Blind, Visually Impaired and Print
+ * Disabled
+ * 
+ * This file is part of liblouis-javabindings.
+ * 
+ * liblouis-javabindings is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation, either
+ * version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
+ */
+
 public class LouisTest {
 
 	private final String de_g2 = "sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-core.mod,sbs-special.mod";
@@ -67,7 +88,7 @@ public class LouisTest {
 	@Test
 	public void testNbsp() {
 
-		assertEquals("BLA BLA", Louis.translate(de_g2, "BLA"+NBSP+"BLA"));
+		assertEquals("BLA BLA", Louis.translate(de_g2, "BLA" + NBSP + "BLA"));
 	}
 
 	@Test
