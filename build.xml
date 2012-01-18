@@ -42,7 +42,8 @@
 	</target>
 
 	<target name="compile">
-		<javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on" target="1.5">
 			<classpath>
 				<path refid="classpath.path" />
 			</classpath>
