@@ -70,7 +70,7 @@
 
 	<target name="compile">
 		<mkdir dir="${build.dir}"/>
-		<my.javac srcdir="${src.dir}" destdir="${build.dir}" deprecation="on" debug="on" target="1.5">
+        <my.javac srcdir="${src.dir}:${test_src.dir}" destdir="${build.dir}" deprecation="on" debug="on" target="1.5">
 			<classpath>
 				<path refid="classpath.path" />
 			</classpath>
